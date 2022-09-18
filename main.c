@@ -7,7 +7,7 @@
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "stb_image_write.h"
 //uiijijijijijik
-
+///////////////////////
 void dfs(int i,int j,int iw,int ih,unsigned char* FinIm, int* DfsIm,int col_num)
 {
     DfsIm[iw*i+j]=col_num;
