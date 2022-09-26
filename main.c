@@ -6,8 +6,7 @@
 #include "stb_image.h"
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "stb_image_write.h"
-//uiijijijijijik
-///////////////////////
+
 void dfs(int i,int j,int iw,int ih,unsigned char* FinIm, int* DfsIm,int col_num)
 {
     DfsIm[iw*i+j]=col_num;
@@ -65,28 +64,20 @@ int main()
             }
         }
     }
-    /*for(i=1;i<ih-1;i++)
-    {
-        for(j=1;j<iw-1;j++)
-        {
-            DfsIm[i*iw+j]+=(int)DfsIm[iw*(i-1)+j-1]*(0.0924)+(int)DfsIm[iw*(i-1)+j]*(0.1192)+(int)DfsIm[iw*(i-1)+j+1]*(0.0924)+(int)DfsIm[iw*i+j-1]*(0.1192)\
-            +(int)DfsIm[iw*i+j]*(0.1538)+(int)DfsIm[iw*i+j+1]*(0.1192)+(int)DfsIm[iw*(i+1)+j-1]*(0.0924)+(int)DfsIm[iw*(i+1)+j]*(0.1192)+(int)DfsIm[iw*(i+1)+j+1]*(0.0924);
-        }
-    }*/
     unsigned char* Findata=(unsigned char*)malloc(iw*ih*n*sizeof(unsigned char));//финальный 4-канальный
     k=0;
     for (i=0; i<ih*iw*n; i=i+n)
     {
-        c=DfsIm[k]%20+DfsIm[k]%35;
-        Findata[i]=4*c-27;
-        Findata[i+1]=3*c+11;
-        Findata[i+2]=3*c+11;
+        c=DfsIm[k]%15+DfsIm[k]%20;
+        Findata[i]=40*c-27;
+        Findata[i+1]=24*c+1;
+        Findata[i+2]=35*c+31;
         Findata[i+3]=255;
         k++;
     }
 
     // записываем картинку
-    stbi_write_png("DFSHampster.png", iw, ih, n, Findata, 0);
+    stbi_write_png("resultat.png", iw, ih, n, Findata, 0);
     stbi_image_free(idata);
     stbi_image_free(FinIm);
     stbi_image_free(Findata);
